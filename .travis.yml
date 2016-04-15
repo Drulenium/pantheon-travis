@@ -36,7 +36,8 @@ script:
   - export STAGE_URL=$(echo $TEST_JSON | jq -r .staging_environment_domain)
   - export DEV_URL=$(echo $TEST_JSON | jq -r .dev_environment_domain)
   - export NOTIFY_EMAIL=$(echo $TEST_JSON | jq -r .notification_email_ids[0])
-  - export TEST_PAGES=$(echo $TEST_JSON | jq -r .test_pages_sitemap)
+  - export TEST_PAGES=$(echo $TEST_JSON | jq -r '.test_pages_sitemap | join(", ")')
+  - export TEST_PAGES_NO_WHITESPACE=$(echo -e "${TEST_PAGES}" | tr -d '[[:space:]]')
   - echo "STAGE_URL=$STAGE_URL, PR=$PR, DEV_URL=$DEV_URL"
   - DB_URL=mysql://$DB_USERNAME@127.0.0.1/$DATABASE
   - drush site-install testing --db-url=$DB_URL --site-name=my-site --yes
@@ -49,8 +50,8 @@ script:
   - drush vset --yes drulenium_vr_config_image_server_opt 'local'
   - drush vset --yes drulenium_vr_release_imagemagick_path '/usr/bin'
   - drush vset --yes drulenium_vr_release_notify_email $NOTIFY_EMAIL
-  - drush vrc $STAGE_URL --pages=node
-  - drush vrc $DEV_URL --pages=node
+  - drush vrc $STAGE_URL --pages=$TEST_PAGES_NO_WHITESPACE
+  - drush vrc $DEV_URL --pages=$TEST_PAGES_NO_WHITESPACE
   - drush vr-diff
   - drush dl drulenium_imgur-7.x-1.x-dev
   - drush en drulenium_imgur -y
