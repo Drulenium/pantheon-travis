@@ -1,0 +1,16 @@
+# Travis CI configuration
+
+language: php
+php:
+  - "5.4"
+sudo: false
+script:
+  # Get Test JSON from PR
+  # TEST_JSON=echo curl -s https://api.github.com/repos/Drulenium/pantheon-travis/pulls/3 | jq -r .body
+  - export PR=https://api.github.com/repos/$TRAVIS_REPO_SLUG/pulls/$TRAVIS_PULL_REQUEST
+  - export TEST_JSON=echo curl -s $PR | jq -r .body
+  - export STAGE_URL=$(echo $TEST_JSON | jq -r .staging_environment_domain)
+  - echo "STAGE_URL=$STAGE_URL, PR=$PR, TEST_JSON=$TEST_JSON"
+branches:
+    only:
+      - master
