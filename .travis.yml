@@ -50,8 +50,8 @@ script:
   - drush vset --yes drulenium_vr_config_image_server_opt 'local'
   - drush vset --yes drulenium_vr_release_imagemagick_path '/usr/bin'
   - drush vset --yes drulenium_vr_release_notify_email $NOTIFY_EMAIL
-  - drush vrc $STAGE_URL --pages=node,user
-  - drush vrc $DEV_URL --pages=node,user
+  - drush vrc $STAGE_URL --pages=$TEST_PAGES_NO_WHITESPACE
+  - drush vrc $DEV_URL --pages=$TEST_PAGES_NO_WHITESPACE
   - drush vr-diff
   - drush dl drulenium_imgur-7.x-1.x-dev
   - drush en drulenium_imgur -y
