@@ -41,7 +41,7 @@ script:
   - echo "TEST_PAGES_NO_WHITESPACE=$TEST_PAGES_NO_WHITESPACE, PR=$PR, DEV_URL=$DEV_URL"
   - DB_URL=mysql://$DB_USERNAME@127.0.0.1/$DATABASE
   - drush site-install testing --db-url=$DB_URL --site-name=my-site --yes
-  - drush dl drulenium-7.x-2.0-alpha1 -y
+  - drush dl drulenium-7.x-2.0-alpha2 -y
   - drush en drulenium -y
   - drush en drulenium_tests -y
   - drush en libraries -y
