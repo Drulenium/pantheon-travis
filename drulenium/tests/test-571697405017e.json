@@ -1,0 +1,12 @@
+{
+    "staging_environment_domain": "http://test-drulenium-hosted.pantheonsite.io/",
+    "notification_email_ids": [
+        "drulenium@mailinator.com"
+    ],
+    "test_pages_sitemap": [
+        "boston",
+        "new-york",
+        "node"
+    ],
+    "dev_environment_domain": "http://nyc-fix-drulenium-hosted.pantheonsite.io/"
+}
