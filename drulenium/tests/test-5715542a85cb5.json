@@ -1,0 +1,11 @@
+{
+    "staging_environment_domain": "http://test-drulenium-hosted.pantheonsite.io/",
+    "notification_email_ids": [
+        "info@technikh.com"
+    ],
+    "test_pages_sitemap": [
+        "node",
+        "user"
+    ],
+    "dev_environment_domain": "http://nyc1-drulenium-hosted.pantheonsite.io/"
+}
